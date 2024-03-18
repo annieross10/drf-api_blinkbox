@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from posts.models import Post
 
 class SavedPost(models.Model):
     """
     Model to store saved posts by users.
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey('drf_api.Post', on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     saved_at = models.DateTimeField(default=timezone.now)
     is_saved = models.BooleanField(default=True)
 
