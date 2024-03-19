@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Friendship(models.Model):
+class Friend(models.Model):
     """
-    Friendship model, representing a friend request and acceptance between users.
+    Friend model, representing a friend request and acceptance between users.
     'sender' is a User instance who sends the friend request.
     'receiver' is a User instance who receives the friend request.
     'accepted' indicates whether the friend request has been accepted.
