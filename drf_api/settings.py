@@ -36,7 +36,7 @@ SECRET_KEY = 'django-insecure-f6+i4$)!h7(06((@@s8r@sl%s(979p61&yn%ppap^yfiph74!&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['blink-box-drf.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['blink-box-drf-1e212f83bc7c.herokuapp.com', 'localhost']
 
 
 # Application definition
