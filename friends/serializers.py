@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import Friend
 from django.db import IntegrityError
 
-
 class FriendSerializer(serializers.ModelSerializer):
     """
     Serializer for the Friend model.
@@ -13,10 +12,18 @@ class FriendSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Friend
-        fields = ['id', 'sender', 'receiver', 'created_at', 'receiver_name']
+        fields = ['id', 'sender', 'receiver', 'created_at', 'receiver_name', 'accepted']
 
     def create(self, validated_data):
         try:
             return super().create(validated_data)
         except IntegrityError:
-            raise serializers.ValidationError({'detail': 'Possible duplicate'})
+            sender = validated_data['sender']
+            receiver = validated_data['receiver']
+            friend_request = Friend.objects.filter(sender=sender, receiver=receiver).first()
+            if friend_request:
+                friend_request.accepted = False 
+                friend_request.save()
+                return friend_request
+            else:
+                raise serializers.ValidationError({'detail': 'Possible duplicate'})

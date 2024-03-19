@@ -8,4 +8,6 @@ urlpatterns = [
     path('', include('profiles.urls')),
     path('', include('posts.urls')),
     path('', include('savedpost.urls')),
+    path('', include('likes.urls')),
+    path('', include('friends.urls')),
 ]

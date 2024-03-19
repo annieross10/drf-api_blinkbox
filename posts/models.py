@@ -10,7 +10,6 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     title = models.CharField(max_length=150)
-    likes = models.PositiveIntegerField(default=0)
     location = models.CharField(max_length=100, blank=True)
     image = models.ImageField(
         upload_to='images/', default='../default_profile_qohjd5', blank=True
@@ -22,12 +21,6 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-
-    def total_likes(self):
-        """
-        Returns the total number of likes for this post.
-        """
-        return self.likes
 
     def __str__(self):
         return self.title

@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Post
-from profiles.serializers import ProfileSerializer
 
 class PostSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='author.username')
@@ -23,8 +22,8 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'owner', 'is_owner', 'profile_id', 'profile_image', 'created_at', 'content', 'title', 'likes', 'location', 'image']
-        read_only_fields = ['created_at', 'likes']
+        fields = ['id', 'owner', 'is_owner', 'profile_id', 'profile_image', 'created_at', 'content', 'title', 'location', 'image']
+        read_only_fields = ['created_at']
 
     def get_is_owner(self, obj):
         request = self.context.get('request')
